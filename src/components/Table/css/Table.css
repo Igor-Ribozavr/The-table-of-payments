@@ -1,0 +1,33 @@
+.main-table {
+  margin: 150px auto;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: left;
+  border-collapse: separate;
+  border-spacing: 5px;
+  background: rgb(236, 232, 232);
+  color: black;
+  border: 16px solid rgb(224, 220, 220);
+  border-radius: 20px;
+  table-layout: fixed;
+  width: 60%;
+}
+.th-head {
+  font-size: 18px;
+  padding: 10px;
+}
+
+.td-table {
+  background: rgb(235, 219, 150);
+  padding: 10px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.btn-open-modal {
+  font-size: 130%
+}
