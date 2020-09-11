@@ -4,7 +4,7 @@ import { receiveDataFunc, addPaymentFunc } from '../action';
 
 
 const fetchReceiveData = async () => {
-  const response = await fetch('url');
+  const response = await fetch('http://localhost:4000');
   const result = await response.json();
   return result;
 }
