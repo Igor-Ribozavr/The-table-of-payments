@@ -17,7 +17,7 @@ export const fetchReceiveData = () => {
   };
 };
 
-export const fetchAddPayment = (sumOfOrder:number, cardNumber:number) => {
+export const fetchAddPayment = (sumOfOrder:number | undefined, cardNumber:number | undefined) => {
   return async (dispatch: Dispatch<WorkingDispatchTypes>) => {
     const response = await fetch(`http://localhost:4000/payments`, {
       method: 'POST',

@@ -1,11 +1,10 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const Payments = require('./Models/Payments')
+const Payments = require('./Models/Payments');
 const cors = require('cors');
 const PORT = '4000';
 const app = express();
-
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -25,7 +24,13 @@ app.get('/', async (req, res) => {
   res.json(allPayments);
 });
 
-app.post('/payments', (req, res) => {
+app.post('/payments', async (req, res) => {
+  const { sumOfOrder, cardNumber } = req.body;
+  await Payments.create({
+    numberOfOrder: Math.floor(Math.random() * sumOfOrder),
+    sumOfOrder: sumOfOrder,
+    cardNumber: cardNumber,
+  });
   res.json({ success: true });
 });
 

@@ -6,25 +6,21 @@ import { fetchReceiveData } from '../../redux/action';
 import Modal from '../Modal/Modal';
 
 const Table: FC = () => {
+  const [display, setDisplay] = useState<string>('none');
   const dispatch = useDispatch();
   const data = useSelector((state: TypeState) => state.data);
-  const [state, setState] = useState();
-
+  const response = useSelector((state: TypeState) => state.creature);
+  
   useEffect(() => {
     dispatch(fetchReceiveData());
-  }, [dispatch]);
-
-  if (data !== undefined) {
-    console.log(data[0].dateOfOrder);
-    let test = data[0].dateOfOrder;
-    console.log(test.toString().substring(0, 10));
-    console.log(data[0].cardNumber);
-  }
+  }, [dispatch, response]);
+  
+ 
 
   return (
     <>
       <div className="container">
-        <button className="btn-open-modal">Совершить платеж</button>
+        <button className="btn-open-modal" onClick={() => setDisplay('block')}>Совершить платеж</button>
       </div>
       <table className="main-table">
         <tbody>
@@ -57,7 +53,7 @@ const Table: FC = () => {
             ))}
         </tbody>
       </table>
-      <Modal />
+      <Modal setDisplay={setDisplay} display={display}/>
     </>
   );
 };

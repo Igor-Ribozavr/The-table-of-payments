@@ -29,5 +29,14 @@
 }
 
 .btn-open-modal {
-  font-size: 130%
+  font-size: 200%;
+  background: rgb(219, 198, 104);
+  color: white;
+  border-radius: 10px;
+  border: 9px solid rgb(224, 220, 220);
+  outline-color: rgb(109, 180, 109);
+}
+
+.btn-open-modal:hover {
+  background: rgb(109, 180, 109);
 }
