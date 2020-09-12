@@ -31,33 +31,50 @@ const Modal: FC<TableProps> = ({ setDisplay, display }) => {
 
   return (
     <>
-      <form method="POST" onSubmit={sendPayment}>
-        <div id="simpleModal" className="modal" style={{ display: display }}>
-          <div className="modal-content">
-            <span className="closeBtn" onClick={() => setDisplay('none')}>
-              X
-            </span>
-           
-            <input
-              type="text"
-              onChange={(e) => {
-                setSumOfOrder(parseInt(e.target.value));
-              }}
-              className="cardNumber"
-            ></input>
-            <input
-              type="text"
-              onChange={(e) => {
-                setcardNumber(parseInt(e.target.value));
-              }}
-              className="cardNumber"
-            ></input>
-            <button className="buttonModal" onClick={() => setDisplay('none')}>
-              Оплатить
-            </button>
+      <div id="simpleModal" className="modal" style={{ display: display }}>
+        <div className="modal-content">
+          <span className="closeBtn" onClick={() => setDisplay('none')}>
+            X
+          </span>
+          <div className="form">
+            <form method="POST" onSubmit={sendPayment}>
+              <div className="test">
+
+              <div>
+                <label className="label">Сумма к оплате</label>
+                <div>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setSumOfOrder(parseInt(e.target.value));
+                    }}
+                    className="input-sum"
+                    ></input>
+                </div>
+              </div>
+              <div className="container-input-sum">
+                <label className="label">Номер карты</label>
+                <div>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setcardNumber(parseInt(e.target.value));
+                    }}
+                    className="input-card"
+                    ></input>
+                </div>
+              </div>
+              <button
+                className="button-modal"
+                onClick={() => setDisplay('none')}
+                >
+                Оплатить
+              </button>
+                </div>
+            </form>
           </div>
         </div>
-      </form>
+      </div>
     </>
   );
 };

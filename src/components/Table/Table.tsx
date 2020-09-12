@@ -30,12 +30,12 @@ const Table: FC = () => {
             <th className="th-head">Сумма</th>
             <th className="th-head">Номер карты</th>
           </tr>
-          <tr>
+          {/* <tr>
             <td className="td-table">1</td>
             <td className="td-table">2</td>
             <td className="td-table">3</td>
             <td className="td-table">4</td>
-          </tr>
+          </tr> */}
           {data &&
             data.map((el, index) => (
               <tr key={index}>
