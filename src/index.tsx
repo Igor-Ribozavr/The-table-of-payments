@@ -5,18 +5,14 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { reducer } from './redux/reducer';
-import createSagaMiddleware from 'redux-saga';
-import rootSaga  from './redux/saga/sagas';
-const sagaMiddleware = createSagaMiddleware();
+import thunk from 'redux-thunk';
+
+
 
 export type TypeState = ReturnType<typeof reducer>;
 
-const store = createStore(
-  reducer,
-  composeWithDevTools(applyMiddleware(sagaMiddleware))
-);
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
-sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <React.StrictMode>

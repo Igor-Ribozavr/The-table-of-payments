@@ -1,25 +1,30 @@
-import React, { FC, useEffect, useState, useCallback } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TypeState } from '../..';
 import './css/Table.css';
-import { startFetchReceiveData } from '../../redux/action';
+import { fetchReceiveData } from '../../redux/action';
+import Modal from '../Modal/Modal';
 
 const Table: FC = () => {
-  const [state, setState] = useState<boolean>(false);
   const dispatch = useDispatch();
-  const creature = useSelector((state: TypeState) => state.data);
-  console.log(creature);
+  const data = useSelector((state: TypeState) => state.data);
+  const [state, setState] = useState();
 
   useEffect(() => {
-    dispatch(startFetchReceiveData());
+    dispatch(fetchReceiveData());
   }, [dispatch]);
+
+  if (data !== undefined) {
+    console.log(data[0].dateOfOrder);
+    let test = data[0].dateOfOrder;
+    console.log(test.toString().substring(0, 10));
+    console.log(data[0].cardNumber);
+  }
 
   return (
     <>
       <div className="container">
-        <button className="btn-open-modal" onClick={() => setState(!state)}>
-          Совершить платеж
-        </button>
+        <button className="btn-open-modal">Совершить платеж</button>
       </div>
       <table className="main-table">
         <tbody>
@@ -35,8 +40,24 @@ const Table: FC = () => {
             <td className="td-table">3</td>
             <td className="td-table">4</td>
           </tr>
+          {data &&
+            data.map((el, index) => (
+              <tr key={index}>
+                <td className="td-table">{el.numberOfOrder}</td>
+                <td className="td-table">
+                  {el.dateOfOrder.toString().substring(0, 10)}
+                </td>
+                <td className="td-table">{el.sumOfOrder}</td>
+                <td className="td-table">{`${el.cardNumber
+                  .toString()
+                  .substring(0, 1)}xxxx${el.cardNumber
+                  .toString()
+                  .substring(8, 9)}`}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
+      <Modal />
     </>
   );
 };

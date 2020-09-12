@@ -2,7 +2,7 @@ import { RECEIVE_ALL_PAYMENTS, ADD_PAYMENT, CurrentData, ResponseCreate, Working
 
 interface DefaultState {
   loading: boolean;
-  data?: CurrentData[][];
+  data?: CurrentData[];
   creature?: ResponseCreate;
 }
 
@@ -16,7 +16,7 @@ export const reducer = (state: DefaultState = defaultState, action: WorkingDispa
       return {
         ...state,
         loading: true,
-        data: [action.payload],
+        data: action.payload,
       };
     case ADD_PAYMENT:
       return {
