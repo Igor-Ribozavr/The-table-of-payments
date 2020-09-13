@@ -64,6 +64,7 @@
   padding: 0.5rem;
   font-size: 1.7rem;
   border: none;
+  
 }
 .input-card {
   padding: 0.5rem;
@@ -71,7 +72,7 @@
   border: none;
 }
 
-.button-modal, .button-modal-disabled {
+.button-modal{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,14 +90,5 @@
 
 .button-modal:hover {
   background: rgb(109, 180, 109);
-}
-
-.button-modal-disabled {
-  background: rgb(219, 198, 104);
-  color: white;
-  border: 0;
-}
-.button-modal-disabled:hover {
-  background: rgb(233, 85, 85);
 }
 

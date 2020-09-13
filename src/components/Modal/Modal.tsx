@@ -29,23 +29,6 @@ const Modal: FC<TableProps> = ({ setDisplay, display }) => {
     [dispatch, sumOfOrder, cardNumber]
   );
 
-  const btnModal = (document.querySelector('.button-modal-disabled') as HTMLButtonElement)
-  
-  if (
-    btnModal !== null &&
-    sumOfOrder !== undefined &&
-    sumOfOrder <= 5000 &&
-    sumOfOrder > 100 &&
-    cardNumber !== undefined &&
-    cardNumber < 999999 &&
-    cardNumber > 111111
-  ) {
-    btnModal.classList.remove('button-modal-disabled');
-    btnModal.classList.add('button-modal')
-    btnModal.disabled = false 
-  }
-
-
   return (
     <>
       <div id="simpleModal" className="modal" style={{ display: display }}>
@@ -67,7 +50,7 @@ const Modal: FC<TableProps> = ({ setDisplay, display }) => {
                       className="input-sum"
                       defaultValue={''}
                     ></input>
-                  </div>
+                  </div> 
                 </div>
                 <div className="container-input-sum">
                   <label className="label">Номер карты</label>
@@ -83,9 +66,8 @@ const Modal: FC<TableProps> = ({ setDisplay, display }) => {
                   </div>
                 </div>
                 <button
-                  className="button-modal-disabled"
+                  className="button-modal"
                   onClick={() => setDisplay('none')}
-                  disabled={true} 
                 >
                   Оплатить
                 </button>
