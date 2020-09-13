@@ -1,4 +1,4 @@
-export default function formatDate(date: Date) {
+export default function formatDate(date: Date):string {
   const dn: number = date.getDate();
   let dd: string = dn.toString();
   if (dn < 10) dd = '0' + dd;

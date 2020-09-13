@@ -42,25 +42,40 @@
   }
 }
 
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 80px auto;
+  overflow: auto;
+}
+
+.label {
+  display: inline-block;
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container-input-sum {
+  margin-top: 15px;
+}
 .input-sum {
   padding: 0.5rem;
   font-size: 1.7rem;
   border: none;
 }
-.container-input-sum{
-  margin-top: 15px;
-}
-
-.button-modal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 60px auto;
+.input-card {
   padding: 0.5rem;
   font-size: 1.7rem;
   border: none;
 }
-.input-card {
+
+.button-modal, .button-modal-disabled {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 60px auto;
   padding: 0.5rem;
   font-size: 1.7rem;
   border: none;
@@ -76,19 +91,12 @@
   background: rgb(109, 180, 109);
 }
 
-.form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 80px auto;
-  overflow: auto;
+.button-modal-disabled {
+  background: rgb(219, 198, 104);
+  color: white;
+  border: 0;
 }
-
-.label{
-  display: inline-block;
-  font-size: 20px;
-  margin-bottom: 10px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.button-modal-disabled:hover {
+  background: rgb(233, 85, 85);
 }
-
 

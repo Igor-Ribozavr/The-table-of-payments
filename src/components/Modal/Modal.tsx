@@ -10,8 +10,8 @@ export type TableProps = {
 
 const Modal: FC<TableProps> = ({ setDisplay, display }) => {
   const dispatch = useDispatch();
-  const [sumOfOrder, setSumOfOrder] = useState<number>();
-  const [cardNumber, setCardNumber] = useState<number>();
+  const [sumOfOrder, setSumOfOrder] = useState<number | undefined>();
+  const [cardNumber, setCardNumber] = useState<number | undefined>();
 
   const modal = document.querySelector('.modal');
 
@@ -28,6 +28,23 @@ const Modal: FC<TableProps> = ({ setDisplay, display }) => {
     },
     [dispatch, sumOfOrder, cardNumber]
   );
+
+  const btnModal = (document.querySelector('.button-modal-disabled') as HTMLButtonElement)
+  
+  if (
+    btnModal !== null &&
+    sumOfOrder !== undefined &&
+    sumOfOrder <= 5000 &&
+    sumOfOrder > 100 &&
+    cardNumber !== undefined &&
+    cardNumber < 999999 &&
+    cardNumber > 111111
+  ) {
+    btnModal.classList.remove('button-modal-disabled');
+    btnModal.classList.add('button-modal')
+    btnModal.disabled = false 
+  }
+
 
   return (
     <>
@@ -48,6 +65,7 @@ const Modal: FC<TableProps> = ({ setDisplay, display }) => {
                         setSumOfOrder(parseInt(e.target.value));
                       }}
                       className="input-sum"
+                      defaultValue={''}
                     ></input>
                   </div>
                 </div>
@@ -60,12 +78,14 @@ const Modal: FC<TableProps> = ({ setDisplay, display }) => {
                         setCardNumber(parseInt(e.target.value));
                       }}
                       className="input-card"
+                      defaultValue={''}
                     ></input>
                   </div>
                 </div>
                 <button
-                  className="button-modal"
+                  className="button-modal-disabled"
                   onClick={() => setDisplay('none')}
+                  disabled={true} 
                 >
                   Оплатить
                 </button>
