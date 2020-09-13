@@ -1,7 +1,7 @@
 import React, { FC, useState, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
 import { fetchAddPayment } from '../../redux/action';
-import '../Modal/Modal.css';
+import { useDispatch } from 'react-redux';
+import '../Modal/css/Modal.css';
 
 export type TableProps = {
   setDisplay: React.Dispatch<React.SetStateAction<string>>;
@@ -11,7 +11,7 @@ export type TableProps = {
 const Modal: FC<TableProps> = ({ setDisplay, display }) => {
   const dispatch = useDispatch();
   const [sumOfOrder, setSumOfOrder] = useState<number>();
-  const [cardNumber, setcardNumber] = useState<number>();
+  const [cardNumber, setCardNumber] = useState<number>();
 
   const modal = document.querySelector('.modal');
 
@@ -39,38 +39,37 @@ const Modal: FC<TableProps> = ({ setDisplay, display }) => {
           <div className="form">
             <form method="POST" onSubmit={sendPayment}>
               <div className="test">
-
-              <div>
-                <label className="label">Сумма к оплате</label>
                 <div>
-                  <input
-                    type="text"
-                    onChange={(e) => {
-                      setSumOfOrder(parseInt(e.target.value));
-                    }}
-                    className="input-sum"
+                  <label className="label">Сумма к оплате</label>
+                  <div>
+                    <input
+                      type="text"
+                      onChange={(e) => {
+                        setSumOfOrder(parseInt(e.target.value));
+                      }}
+                      className="input-sum"
                     ></input>
+                  </div>
                 </div>
-              </div>
-              <div className="container-input-sum">
-                <label className="label">Номер карты</label>
-                <div>
-                  <input
-                    type="text"
-                    onChange={(e) => {
-                      setcardNumber(parseInt(e.target.value));
-                    }}
-                    className="input-card"
+                <div className="container-input-sum">
+                  <label className="label">Номер карты</label>
+                  <div>
+                    <input
+                      type="text"
+                      onChange={(e) => {
+                        setCardNumber(parseInt(e.target.value));
+                      }}
+                      className="input-card"
                     ></input>
+                  </div>
                 </div>
-              </div>
-              <button
-                className="button-modal"
-                onClick={() => setDisplay('none')}
+                <button
+                  className="button-modal"
+                  onClick={() => setDisplay('none')}
                 >
-                Оплатить
-              </button>
-                </div>
+                  Оплатить
+                </button>
+              </div>
             </form>
           </div>
         </div>

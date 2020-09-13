@@ -27,9 +27,10 @@ app.get('/', async (req, res) => {
 app.post('/payments', async (req, res) => {
   const { sumOfOrder, cardNumber } = req.body;
   await Payments.create({
-    numberOfOrder: Math.floor(Math.random() * sumOfOrder),
+    numberOfOrder: Math.floor(Math.random() * 99999),
     sumOfOrder: sumOfOrder,
     cardNumber: cardNumber,
+    dateOfOrde:new Date(),
   });
   res.json({ success: true });
 });
