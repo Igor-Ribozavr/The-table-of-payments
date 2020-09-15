@@ -30,7 +30,7 @@ app.post('/payments', async (req, res) => {
     numberOfOrder: Math.floor(Math.random() * 99999),
     sumOfOrder: sumOfOrder,
     cardNumber: cardNumber,
-    dateOfOrder:new Date(),
+    dateOfOrder: new Date(),
   });
   res.json({ success: true });
 });

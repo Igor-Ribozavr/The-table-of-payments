@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchReceiveData } from '../../redux/action';
+import { startFetchReceiveData } from '../../redux/action';
 import formatDate from '../Table/formatDate';
 import Modal from '../Modal/Modal';
 import { TypeState } from '../..';
@@ -13,7 +13,7 @@ const Table: FC = () => {
   const data = useSelector((state: TypeState) => state.data);
 
   useEffect(() => {
-    dispatch(fetchReceiveData());
+    dispatch(startFetchReceiveData());
   }, [dispatch, response]);
 
   return (

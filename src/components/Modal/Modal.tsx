@@ -1,5 +1,5 @@
 import React, { FC, useState, useCallback } from 'react';
-import { fetchAddPayment } from '../../redux/action';
+import { startAddPayment } from '../../redux/action';
 import { useDispatch } from 'react-redux';
 import '../Modal/css/Modal.css';
 
@@ -24,7 +24,7 @@ const Modal: FC<TableProps> = ({ setDisplay, display }) => {
   const sendPayment = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(fetchAddPayment(sumOfOrder, cardNumber));
+      dispatch(startAddPayment(sumOfOrder, cardNumber));
     },
     [dispatch, sumOfOrder, cardNumber]
   );
@@ -50,7 +50,7 @@ const Modal: FC<TableProps> = ({ setDisplay, display }) => {
                       className="input-sum"
                       defaultValue={''}
                     ></input>
-                  </div> 
+                  </div>
                 </div>
                 <div className="container-input-sum">
                   <label className="label">Номер карты</label>

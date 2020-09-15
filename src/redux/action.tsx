@@ -1,38 +1,35 @@
 import {
   RECEIVE_ALL_PAYMENTS,
+  CurrentData,
+  ResponseCreate,
   ADD_PAYMENT,
-  WorkingDispatchTypes,
- 
+  START_FETCH_RECEIVE_ALL_PAYMENTS,
+  START_ADD_PAYMENT,
 } from './actionTypes';
-import { Dispatch } from 'react';
 
-export const fetchReceiveData = () => {
-  return async (dispatch: Dispatch <WorkingDispatchTypes>) => {
-    const response = await fetch('http://localhost:4000');
-    const result = await response.json();
-    dispatch({
-      type: RECEIVE_ALL_PAYMENTS,
-      payload: result,
-    });
+export const startFetchReceiveData = () => {
+  return {
+    type: START_FETCH_RECEIVE_ALL_PAYMENTS,
   };
 };
 
-export const fetchAddPayment = (sumOfOrder:number | undefined, cardNumber:number | undefined) => {
-  return async (dispatch: Dispatch<WorkingDispatchTypes>) => {
-    const response = await fetch(`http://localhost:4000/payments`, {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        sumOfOrder: sumOfOrder,
-        cardNumber: cardNumber,
-      }),
-    });
-    const result = await response.json();
-    dispatch({
-      type: ADD_PAYMENT,
-      payload: result,
-    });
+export const receiveDataFunc = (payload: CurrentData) => {
+  return {
+    type: RECEIVE_ALL_PAYMENTS,
+    payload,
+  };
+};
+
+export function startAddPayment(sumOfOrder: number | undefined, cardNumber:number | undefined) {
+  return {
+    type: START_ADD_PAYMENT,
+    payload: {sumOfOrder,cardNumber}
+  }; 
+};
+
+export const addPaymentFunc = (payload: ResponseCreate) => {
+  return {
+    type: ADD_PAYMENT,
+    payload,
   };
 };
