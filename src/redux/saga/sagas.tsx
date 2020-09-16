@@ -1,48 +1,26 @@
-import { put, takeLatest, all, call } from 'redux-saga/effects';
+import { put, takeLatest, call } from 'redux-saga/effects';
+import { receiveDataFunc, addPaymentFunc } from '../action';
+import {fetchReceiveData,fetchAddPayment} from '../saga/api'
 import {
   START_FETCH_RECEIVE_ALL_PAYMENTS,
   START_ADD_PAYMENT,
+  PaymentPost,
 } from '../actionTypes';
-import { receiveDataFunc, addPaymentFunc } from '../action';
+import { SagaIterator } from 'redux-saga';
 
-const fetchReceiveData = async () => {
-  const response = await fetch('http://localhost:4000');
-  const result = await response.json();
-  return result;
-};
 
-const fetchAddPayment = async (action: any) => {
-  console.log(action);
-
-  const response = await fetch(`http://localhost:4000/payments`, {
-    method: 'POST',
-    headers: {
-      'Content-type': 'application/json',
-    },
-    body: JSON.stringify({
-      cardNumber: action.cardNumber,
-      sumOfOrder: action.sumOfOrder,
-    }),
-  });
-  const result = await response.json();
-  return result;
-};
-
-function* fetchData() {
+function* fetchData(): SagaIterator {
   const data = yield call(fetchReceiveData);
-  yield put(receiveDataFunc(data));
+  yield put(receiveDataFunc(data)); 
 }
 
-function* fetchResponse(action: any) {
-  const response = yield call(fetchAddPayment, action.payload);
+function* fetchResponse(action: PaymentPost): SagaIterator {
+  const response = yield call(fetchAddPayment, action);
   yield put(addPaymentFunc(response));
 }
 
-function* actionWatcher() {
+export function* actionWatcher(): SagaIterator {
   yield takeLatest(START_FETCH_RECEIVE_ALL_PAYMENTS, fetchData);
-  yield takeLatest(START_ADD_PAYMENT, fetchResponse);
-}
-
-export default function* rootSaga() {
-  yield all([actionWatcher()]);
-}
+  yield takeLatest(START_ADD_PAYMENT, fetchResponse); 
+}  
+ 

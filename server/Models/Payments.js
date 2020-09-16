@@ -9,5 +9,5 @@ const paymentsSchema = mongoose.Schema({
 
 const Payments = mongoose.model('Payments', paymentsSchema);
 
-module.exports = Payments;
+module.exports = Payments; 
 

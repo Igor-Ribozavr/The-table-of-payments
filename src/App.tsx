@@ -6,7 +6,7 @@ const App: FC = () => {
     <>
       <Table />
     </>
-  );
+  ); 
 };
 
 export default App;

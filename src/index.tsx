@@ -1,24 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from './App'; 
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { reducer } from './redux/reducer';
-import createSagaMiddleware from 'redux-saga';
-import rootSaga from './redux/saga/sagas';
-const sagaMiddleware = createSagaMiddleware();
+import {store} from './redux/store'
 
-export type TypeState = ReturnType<typeof reducer>;
-
-const store = createStore(
-  reducer,
-  composeWithDevTools(applyMiddleware(sagaMiddleware))
-);
-
-sagaMiddleware.run(rootSaga);
-
-ReactDOM.render(
+ 
+ReactDOM.render( 
   <React.StrictMode>
     <Provider store={store}>
       <App />

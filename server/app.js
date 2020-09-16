@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan('dev'));
 
-app.use(
+app.use( 
   cors({
     credentials: true,
     origin: ['http://localhost:3000'],
@@ -45,8 +45,8 @@ async function start() {
     app.listen(PORT, () => {
       console.log(`Listening port ${PORT}!`);
     });
-  } catch (e) {
-    console.log(e);
+  } catch (error) {
+    console.log(error);
   }
 }
 

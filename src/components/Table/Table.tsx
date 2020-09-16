@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { startFetchReceiveData } from '../../redux/action';
 import formatDate from '../Table/formatDate';
 import Modal from '../Modal/Modal';
-import { TypeState } from '../..';
+import { TypeState } from '../../redux/rootReducer';
 import './css/Table.css';
 
 const Table: FC = () => {
   const dispatch = useDispatch();
   const [display, setDisplay] = useState<string>('none');
-  const response = useSelector((state: TypeState) => state.creature);
-  const data = useSelector((state: TypeState) => state.data);
+  const response = useSelector((state: TypeState) => state.reducerPayments.creature);
+  const data = useSelector((state: TypeState) => state.reducerPayments.data);
 
   useEffect(() => {
     dispatch(startFetchReceiveData());
