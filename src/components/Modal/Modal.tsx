@@ -1,4 +1,4 @@
-import React, { FC, useState, useCallback } from 'react';
+import React, { FC, useState, useCallback, useRef } from 'react';
 import { startAddPayment } from '../../redux/action';
 import { useDispatch } from 'react-redux';
 import '../Modal/css/Modal.css';
@@ -12,11 +12,11 @@ const Modal: FC<TableProps> = ({ setDisplay, display }) => {
   const dispatch = useDispatch();
   const [sumOfOrder, setSumOfOrder] = useState<number | undefined>();
   const [cardNumber, setCardNumber] = useState<number | undefined>();
+  const modalWind = useRef(null)
 
-  const modal = document.querySelector('.modal');
 
   window.addEventListener('click', (event: MouseEvent) => {
-    if (event.target === modal) {
+    if (event.target === modalWind.current) {
       setDisplay('none');
     }
   });
@@ -31,7 +31,7 @@ const Modal: FC<TableProps> = ({ setDisplay, display }) => {
 
   return (
     <>
-      <div id="simpleModal" className="modal" style={{ display: display }}>
+      <div id="simpleModal" className="modal" style={{ display: display }} ref={modalWind}>
         <div className="modal-content">
           <span className="closeBtn" onClick={() => setDisplay('none')}>
             X
